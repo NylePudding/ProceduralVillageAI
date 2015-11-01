@@ -8,6 +8,7 @@ public class PersonMovement : MonoBehaviour {
 	bool init = false;
 	Transform player;
 	Transform p;
+
 	//PlayerHealth playerHealth;
 	//EnemyHealth enemyHealth;
 	NavMeshAgent nav;
@@ -29,18 +30,22 @@ public class PersonMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		ps = GetComponentInParent<PersonStats>();
+
 		if (!init){
 			init = true;
-			player = GameObject.FindGameObjectWithTag("Player").transform;
 
-
+			if (ps.partner != null){
+				p = ps.partner.transform.FindChild("Body");
+			}
+			else if (ps.mother != null) {
+				p = ps.mother.transform.FindChild("Body");
+			}
+			else {
+				p = GameObject.FindGameObjectWithTag("Player").transform;
+			}
 		}
 
-		ps = GetComponentInParent<PersonStats>();
-		p = ps.partner.GetComponentInChildren<Transform>().transform;
-
 		nav.SetDestination(p.position);
-
-
 	}
 }

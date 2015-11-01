@@ -5,24 +5,28 @@ public class Setup : MonoBehaviour {
 
 	public int startingCouples;
 	public GameObject person;
-
-
-
-
-
+	public int birthChance;
+	public int newPartnerChance;
+	public int year;
+	
 	void Start(){
 		setup();
 	}
 
-	void setup(){
+	public void setup(){
+
+
+
+
+		year = 0;
 
 		for(int i=0; i<startingCouples; i++){
 
 
-			float x1 = Random.Range(-100f,100f);
-			float z1 = Random.Range(-100f,100f);
-			float x2 = Random.Range(-100f,100f);
-			float z2 = Random.Range(-100f,100f);
+			float x1 = Random.Range(-50f,50f);
+			float z1 = Random.Range(-50f,50f);
+			float x2 = Random.Range(-50f,50f);
+			float z2 = Random.Range(-50f,50f);
 
 
 			Vector3 pos1 = new Vector3(x1,0.5f,z1);
@@ -47,5 +51,115 @@ public class Setup : MonoBehaviour {
 			rh.createLink(partner1, partner2, 75);
 		}
 
+	}
+
+	public void yearCycle(){
+
+		year++;
+
+
+
+		processBirths();
+
+		processNewPartners();
+
+		ageLiving();
+
+	}
+
+	void ageLiving(){
+
+		PersonStats[] people = GameObject.Find("People").GetComponentsInChildren<PersonStats>();
+
+		foreach (PersonStats p in people){
+			if (p.alive){
+				p.age++;
+			}
+		}
+	}
+
+	void processBirths(){
+
+		PersonStats[] people = GameObject.Find("People").GetComponentsInChildren<PersonStats>();
+		
+		foreach (PersonStats p in people){
+			
+			int rand = Random.Range(0,100);
+			
+			if (p.partner != null){
+				
+				if (rand < birthChance){
+					
+					GameObject baby = (GameObject) Instantiate(person, p.transform.position, Quaternion.identity);
+					
+					PersonStats bs = baby.GetComponent<PersonStats>();
+					
+					if (p.gender == 'm'){
+						bs.InitialiseBaby(p.partner,p.gameObject);
+					}
+					else {
+						bs.InitialiseBaby(p.gameObject,p.partner);
+					}
+					
+					RelationshipHelper rh = GameObject.Find("Relationships").GetComponent<RelationshipHelper>();
+					
+					rh.createLink(p.gameObject,baby,100);
+					rh.createLink(p.partner,baby,100);
+					
+				}
+			}
+		}
+	}
+
+	void processNewPartners(){
+
+		PersonStats[] people = GameObject.Find("People").GetComponentsInChildren<PersonStats>();
+		PersonStats[] otherPeople = GameObject.Find("People").GetComponentsInChildren<PersonStats>();
+
+		foreach (PersonStats p in people){
+
+			if (p.partner == null){
+
+				if (p.age >= 18){
+
+					foreach (PersonStats op in otherPeople){
+
+						if (p.gameObject != op.gameObject){	//IF NOT ME
+
+							if (op.partner == null){
+
+								if (op.age >= 18){
+
+									int rand = Random.Range(0,100);
+
+									bool applicable = false;
+
+									if ((p.gender == op.gender) && (p.homosexual) && (op.homosexual)){
+										applicable = true;
+									}
+									else if ((p.gender != op.gender) && (!p.homosexual) && (!op.homosexual)){
+										applicable = true;
+									}
+
+									if (applicable){
+										if (rand < newPartnerChance){
+
+											RelationshipHelper rh = GameObject.Find("Relationships").GetComponent<RelationshipHelper>();
+
+											p.partner = op.gameObject;
+											op.partner = p.gameObject;
+
+											if (!rh.isDuplicate(p.gameObject,op.gameObject)){
+												rh.createLink(p.gameObject, op.gameObject,75);
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }

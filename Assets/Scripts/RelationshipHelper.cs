@@ -19,13 +19,11 @@ public class RelationshipHelper : MonoBehaviour {
 	}
 
 
-	bool isDuplicate(GameObject person1, GameObject person2){
+	public bool isDuplicate(GameObject person1, GameObject person2){
 
 		bool duplicateFound = false;
 
 		LinkStats[] allLinks = GetComponentsInChildren<LinkStats>();
-
-
 
 		foreach (LinkStats child in allLinks) {
 

@@ -66,7 +66,7 @@ public class PersonStats : MonoBehaviour {
 
 	public void InitialiseBaby(GameObject mother, GameObject father){
 
-        int rand = Random.Range(0, 1);
+        int rand = Random.Range(0, 2);
 
         if (rand == 0) gender = 'm';
         else gender = 'f';
@@ -74,8 +74,15 @@ public class PersonStats : MonoBehaviour {
         //forename = nameGenerator.newForename(gender);
         //surname = nameGenerator.newSurname();
 
+		NameGenerator nameGenerator = GameObject.Find("Helper").GetComponent<NameGenerator>();
+		
+		forename = nameGenerator.newForename(gender);
+
         this.mother = mother;
         this.father = father;
+
+		surname = father.GetComponent<PersonStats>().surname;
+
         partner = null;
 
         age = 0;
@@ -95,6 +102,8 @@ public class PersonStats : MonoBehaviour {
         occupations = new List<GameObject>();
         contacts = new List<GameObject>();
         jobHistory = new List<string>();
+
+		transform.parent = GameObject.Find("People").transform;
         
     }
 
