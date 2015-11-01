@@ -1,9 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\OccupationConstructor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PersonMovement.cs">
     <Files>
-      <File FileName="Assets\PersonConstructor.cs" Line="53" Column="24" />
-      <File FileName="Assets\OccupationConstructor.cs" Line="27" Column="3" />
+      <File FileName="Assets\Scripts\PersonStats.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\NameGenerator.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Setup.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\RelationshipHelper.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LinkStats.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PersonMovement.cs" Line="36" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class PersonStats : MonoBehaviour {
 
-    private GameObject helper;
-    private NameGenerator nameGenerator;
+    //private GameObject helper;
+    //private NameGenerator nameGenerator;
 
 	public string forename;
 	public string surname;
@@ -27,12 +27,10 @@ public class PersonStats : MonoBehaviour {
 	public List<string> jobHistory;
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
 
 
-        helper = GameObject.Find("_helper");
-
-        nameGenerator = helper.GetComponent<NameGenerator>();
+		//nameGenerator = GameObject.Find("Helper").GetComponent<NameGenerator>();
 
 	}
 	
@@ -41,7 +39,8 @@ public class PersonStats : MonoBehaviour {
 	
 	}
 
-	void InitialiseGeneric (string forename, string surname, float age, char gender, bool alive, bool homosexual, 
+
+	public void InitialiseGeneric (string forename, string surname, float age, char gender, bool alive, bool homosexual, 
 	                 int stress, int confidence, int happiness, int temper, GameObject mother, GameObject father, GameObject partner) {
 
 		this.forename = forename;
@@ -65,15 +64,15 @@ public class PersonStats : MonoBehaviour {
 		jobHistory = new List<string>();
 	}
 
-    void InitialiseBaby(GameObject mother, GameObject father){
+	public void InitialiseBaby(GameObject mother, GameObject father){
 
         int rand = Random.Range(0, 1);
 
         if (rand == 0) gender = 'm';
         else gender = 'f';
 
-        forename = nameGenerator.newForename(gender);
-        surname = nameGenerator.newSurname(gender);
+        //forename = nameGenerator.newForename(gender);
+        //surname = nameGenerator.newSurname();
 
         this.mother = mother;
         this.father = father;
@@ -99,7 +98,7 @@ public class PersonStats : MonoBehaviour {
         
     }
 
-    void InitialiseOutsiderPartner(GameObject partner){
+	public void InitialiseOutsiderPartner(GameObject partner){
 
         PersonStats partnerStats = partner.GetComponent<PersonStats>();
 
@@ -110,18 +109,18 @@ public class PersonStats : MonoBehaviour {
         }
         else {
             homosexual = false;
-            if (partnerStats.gender = 'm')
+            if (partnerStats.gender == 'm')
             {
                 gender = 'f';
-                forename = nameGenerator.newForename(gender);
-                surname = partnerStats.surname;
+                //forename = nameGenerator.newForename(gender);
+                //surname = partnerStats.surname;
             }
             else
             {
                 gender = 'm';
-                forename = nameGenerator.newForename(gender);
-                surname = nameGenerator.newSurname();
-                partnerStats.surname = surname;
+                //forename = nameGenerator.newForename(gender);
+                //surname = nameGenerator.newSurname();
+                //partnerStats.surname = surname;
             }
         }
 
@@ -145,4 +144,41 @@ public class PersonStats : MonoBehaviour {
         contacts = new List<GameObject>();
         jobHistory = new List<string>();
     }
+
+
+	public void InitialiseSetupPartner(char gender, bool homosexual){
+		
+
+			
+		this.homosexual = homosexual;
+		this.gender = gender;
+
+		NameGenerator nameGenerator = GameObject.Find("Helper").GetComponent<NameGenerator>();
+
+		forename = nameGenerator.newForename(gender);
+		surname = nameGenerator.newSurname();
+		
+		mother = null;
+		father = null;
+		
+		
+		age = Random.Range(18, 100);
+		alive = true;
+		partner = null;
+		
+		stress = Random.Range(0,100);
+		confidence = Random.Range(0, 100);
+		happiness = Random.Range(0, 100);
+		temper = Random.Range(0, 100);
+		
+		
+		afairs = new List<GameObject>();
+		divorces = new List<GameObject>();
+		occupations = new List<GameObject>();
+		contacts = new List<GameObject>();
+		jobHistory = new List<string>();
+
+		transform.parent = GameObject.Find("People").transform;
+
+	}
 }

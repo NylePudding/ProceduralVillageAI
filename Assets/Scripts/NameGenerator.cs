@@ -18,7 +18,7 @@ public class NameGenerator : MonoBehaviour {
         return "Barry";
     }
 
-    public string newSurname(){
-        return "Smith";
+	public string newSurname(){
+        return "Scott";
     }
 }

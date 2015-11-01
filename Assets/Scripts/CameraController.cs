@@ -4,17 +4,25 @@ using System.Collections;
 public class CameraController : MonoBehaviour
 {
 
-    public GameObject player;
+	public Transform target;
+	public float smoothing = 5f;
 
-    private Vector3 offset;
+	Vector3 offset;
 
-    void Start()
-    {
-        offset = transform.position - player.transform.position;
-    }
+	void Start(){
 
-    void LateUpdate()
-    {
-        transform.position = player.transform.position + offset;
-    }
+		offset = transform.position - target.position;
+
+	}
+
+	void FixedUpdate(){
+
+ 		Vector3 targetCamPos = target.position + offset;
+		transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
+
+	}
+
+    
+
+
 }

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class OccupationConstructor : MonoBehaviour {
+public class OccupationStats : MonoBehaviour {
 
 	public GameObject boss;
 	public List<GameObject> fullTime;

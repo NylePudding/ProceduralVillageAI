@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 10.00
+Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
 Project("{32B647DE-612C-3879-DB05-FAF17F4D5677}") = "ProceduralVillageAI", "Assembly-CSharp.csproj", "{68C408CB-FA19-5A2D-FD55-5913E196184C}"
@@ -17,7 +17,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																									GlobalSection(MonoDevelopProperties) = preSolution
+																																																																																						GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
