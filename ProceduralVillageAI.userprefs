@@ -2,12 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PersonMovement.cs">
     <Files>
-      <File FileName="Assets\Scripts\PersonStats.cs" Line="29" Column="32" />
+      <File FileName="Assets\Scripts\PersonStats.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\NameGenerator.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Setup.cs" Line="121" Column="27" />
+      <File FileName="Assets\Scripts\Setup.cs" Line="137" Column="42" />
       <File FileName="Assets\Scripts\RelationshipHelper.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\LinkStats.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PersonMovement.cs" Line="31" Column="2" />
+      <File FileName="Assets\Scripts\PersonMovement.cs" Line="19" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

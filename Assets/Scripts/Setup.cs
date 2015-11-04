@@ -15,9 +15,6 @@ public class Setup : MonoBehaviour {
 
 	public void setup(){
 
-
-
-
 		year = 0;
 
 		for(int i=0; i<startingCouples; i++){
@@ -90,7 +87,7 @@ public class Setup : MonoBehaviour {
 				
 				if (rand < birthChance){
 					
-					GameObject baby = (GameObject) Instantiate(person, p.transform.position, Quaternion.identity);
+					GameObject baby = (GameObject) Instantiate(person, p.GetComponentInChildren<Transform>().transform.position, Quaternion.identity);
 					
 					PersonStats bs = baby.GetComponent<PersonStats>();
 					
@@ -110,6 +107,49 @@ public class Setup : MonoBehaviour {
 			}
 		}
 	}
+
+    void processDeaths(){
+
+        PersonStats[] people = GameObject.Find("People").GetComponentsInChildren<PersonStats>();
+
+        foreach (PersonStats p in people){
+
+            int rand;
+
+            if (p.age <= 4){
+                rand = Random.Range(0, 4386);
+            }
+            else if (p.age <= 14){
+                rand = Random.Range(0, 8333);
+            }
+            else if (p.age <= 24){
+                rand = Random.Range(0, 1908);
+            }
+            else if (p.age <= 34){
+                rand = Random.Range(0, 1215);
+            }
+            else if (p.age <= 44){
+                rand = Random.Range(0, 663);
+            }
+            else if (p.age <= 54){
+                rand = Random.Range(0, 279);
+            }
+            else if (p.age <= 64){
+                rand = Random.Range(0, 112);
+            }
+            else if (p.age <= 74){
+                rand = Random.Range(0, 42);
+            }
+            else if (p.age <= 84){
+                rand = Random.Range(0, 15);
+            }
+            else {
+                rand = Random.Range(0, 6);
+            }
+
+        }
+
+    }
 
 	void processNewPartners(){
 
